@@ -3,7 +3,7 @@ import time
 import sys
 
 try:
-    buffer=10000
+    buffer=100
     #buffer=int(input('Введите количество символов:'))          #можем ввести buffer с клавиатуры
     with open ('text.txt',encoding='utf-8') as f:
         text=f.read(buffer)
@@ -19,7 +19,11 @@ try:
         
         while text:
             txt=text.split(' ')
-            for i in range(len(txt)-1):
+            for i in range(len(txt)):
+                if txt[i]=='':
+                    txt[i]=txt[i].replace('',' ')
+            
+            for i in range(len(txt)):
                 for j in range(len(gl)):
                     if txt[i][0]==gl[j]:
                         txt[i]=txt[i].replace(txt[i][0], GL[j])
